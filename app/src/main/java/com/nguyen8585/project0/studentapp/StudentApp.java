@@ -45,12 +45,14 @@ public class StudentApp {
 
                 switch(choice) {
                     case READ:
+                        // Get all students from database
                         List<Student> students = this.studentDao.getAllStudents();
                         UI.displayAllStudents(students);
 
                         break;
+
                     case CREATE:
-                        // Get student info to be saved into database
+                        // Get student info from user to be saved into database
                         Student insertStudent = UI.insertStudent(scanner);
 
                         // Save the student object into database
@@ -60,36 +62,67 @@ public class StudentApp {
                         UI.displayInsertedStudent(insertStudent);
 
                         break;
+
                     case UPDATE:
+                        // Get student info from user to be updated into database
                         Student updateStudent = UI.updateStudent(scanner);
+
+                        // Update the student in database
                         this.studentDao.update(updateStudent);
+
                         UI.displayUpdatedStudent(updateStudent);
+
                         break;
+
                     case DELETE:
+                        // Get student id from user
                         int deleteStudentId = UI.deleteStudent(scanner);
+
+                        // Delete the student from database
                         Student deleteStudent = this.studentDao.delete(deleteStudentId);
+
                         UI.displayDeletedStudent(deleteStudent);
+
                         break;
+
                     case SEARCH:
+                        // Get student id to be search
                         int searchStudentId = UI.searchStudent(scanner);
+
+                        // Get a student in database with that id
                         Student searchStudent = this.studentDao.search(searchStudentId);
+
                         UI.displaySearchedStudent(searchStudent);
+
                         break;
+
                     case JSON:
+
+                        // Get file name from user
                         String fileName = UI.getFileName(scanner);
+
+                        // Write all student from database to json file
                         this.studentDao.writeJsonToFile(fileName);
+
                         UI.displayFileNameWrittenToDisk(fileName);
+
                         break;
+
                     default:
                         break;
                 } // end switch
+
             } catch (InputMismatchException ie) {
                 choice = 5;
                 quit = true;
             } catch (Exception e) {
                 choice = 5;
                 quit = true;
-            } // end try and catch
+            } finally {
+                this.factory.close();
+            }// end try and catch
+                
+             
         } // end while loop
 
         System.out.println("----- END OF PROGRAM -------");

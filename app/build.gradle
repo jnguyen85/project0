@@ -9,14 +9,11 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
-    id 'java'
 }
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
-// sourceCompatibility = '11'
-// targetCompatibility = '11'
 
 repositories {
     // Use JCenter for resolving dependencies.
@@ -39,7 +36,7 @@ jar {
     }
 }
 
-// mainClassName = "com.nguyen8585.project0.Main"
+//mainClassName = "com.nguyen8585.project0.Main"
 
 // application {
 //     // Define the main class for the application.
@@ -119,7 +116,7 @@ dependencies {
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
     implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
 
-    compile group: 'org.eclipse.persistence', name: 'org.eclipse.persistence.moxy',version: '2.7.3'
+
     compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
     compile 'com.sun.xml.bind:jaxb-core:2.3.0.1'
     compile 'com.sun.xml.bind:jaxb-impl:2.3.1'
